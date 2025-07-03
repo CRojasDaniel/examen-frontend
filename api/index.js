@@ -2,11 +2,19 @@ const express = require('express');
 const crypto = require('crypto');
 const app = express();
 app.use(express.json());
+const cors = require('cors');
+app.use(cors());
+const fs = require('fs');
+const path = require('path');
+// ya tenías express, cors y crypto…
 
 // Replace with your actual RSA public key
-const PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
-YOUR_PUBLIC_KEY_HERE
------END PUBLIC KEY-----`;
+// __dirname es la carpeta donde está index.js (por eso usamos path.join)
+const PUBLIC_KEY = fs.readFileSync(
+  path.join(__dirname, 'keys', 'public.pem'),
+  'utf8'
+);
+
 
 app.post('/api/encrypt', (req, res) => {
   const { text } = req.body;
