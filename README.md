@@ -159,7 +159,7 @@ examen-angular/
 - **Respuesta** JSON:  
   ```json
   { "encrypted": "<cadena Base64 resultante>" }
-  ```
+  
 
 ## 3. Reconocimiento de voz
 
@@ -195,8 +195,8 @@ examen-angular/
 
 > Al finalizar, comprime **todo** en `examen-angular.zip`.  
 > El ZIP debe estar listo para ejecutar:
-> ```bash
 > npm install
 > npm run start:api
 > npm start
+```
 ```
