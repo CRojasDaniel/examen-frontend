@@ -1,14 +1,27 @@
-<!-- src/app/app.component.html -->
+<!--
+  @fileoverview
+  Plantilla HTML del componente principal de Angular.
+  Muestra la interfaz de bienvenida, captura el nombre por voz, y permite enviarlo al backend para cifrado.
+  Integra controles visuales para la experiencia de usuario y muestra el resultado cifrado.
+-->
+
 <div
     class="min-vh-100 d-flex flex-column align-items-center justify-content-center bg-dark text-white text-center px-3 bg-black">
     
     <!-- Imagen central -->
-    
+    <!--
+      Imagen ilustrativa de bienvenida.
+      No tiene efectos secundarios ni interacción directa con el componente.
+    -->
     <div
         class="card col-lg-3 d-flex flex-column align-items-center justify-content-center bg-dark text-white text-center px-3 bg-black">
         <img src="assets/personas.png" alt="Ilustración de personas" class="mb-4 personas-img">
 
         <!-- Título y subtítulo -->
+        <!--
+          Título principal y subtítulo de bienvenida.
+          Solo informativo, sin interacción.
+        -->
         <h1 class="fw-bold mb-2">¡Te damos la bienvenida a Banco Azteca!</h1>
         <p class="small mb-4">
             Usa tu préstamo como dinero en efectivo<br>
@@ -16,6 +29,11 @@
         </p>
 
         <!-- Input + contador + spinner -->
+        <!--
+          Campo de texto que muestra el nombre capturado por voz.
+          Deshabilitado para edición manual; solo refleja el valor de la propiedad 'text' del componente.
+          Incluye contador de caracteres y spinner visual cuando el reconocimiento de voz está activo.
+        -->
         <div class="w-100 w-sm-75 w-md-50 mb-4 position-relative text-start">
             <label for="nameInput" class="form-label mb-1 ">¿Cómo prefieres que te llamemos?</label>
             <input id="nameInput" type="text"
@@ -25,6 +43,10 @@
             <div class="text-end text-muted mt-1">{{ text.length }}/15 caracteres</div>
 
             <!-- Spinner mientras escucha -->
+            <!--
+              Spinner visible solo cuando 'isRecognizing' es true.
+              Indica visualmente que el reconocimiento de voz está activo.
+            -->
             <div *ngIf="isRecognizing">
                 <div class="spinner-border spinner-border-sm text-light" role="status">
                     <span class="visually-hidden">Escuchando...</span>
@@ -33,6 +55,10 @@
         </div>
 
         <!-- Botones de acción -->
+        <!--
+          Botón para iniciar o detener el reconocimiento de voz.
+          Llama al método 'startListening()' del componente.
+        -->
         <div class="d-flex gap-3 mb-2">
             <button type="button" class="btn btn-outline-light btn-lg" (click)="startListening()">
                 🎤
@@ -40,6 +66,11 @@
             
         </div>
         <!-- Botones de acción -->
+        <!--
+          Botón para enviar el texto capturado al backend y cifrarlo.
+          Llama al método 'encrypt()' del componente.
+          Deshabilitado si no hay texto capturado.
+        -->
         <div class="mb-3 w-100">
             <button type="button" class="btn btn-primary btn-lg w-100" (click)="encrypt()" [disabled]="!text">
                 Comenzar
@@ -50,6 +81,10 @@
         
     </div>
     <!-- Footer de encriptado -->
+    <!--
+      Footer que muestra el resultado cifrado recibido del backend.
+      Solo visible si la propiedad 'encrypted' tiene valor.
+    -->
 <footer
   class="encrypted-footer d-flex justify-content-center align-items-center bg-black"
 >
@@ -60,3 +95,4 @@
 </footer>
 
 </div>
+

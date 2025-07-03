@@ -1,27 +1,74 @@
-// src/app/app.component.ts
+/**
+ * @fileoverview
+ * Componente principal de la aplicación Angular.
+ * Permite capturar texto por voz, mostrarlo en tiempo real y enviarlo al backend para cifrado RSA.
+ * Gestiona la integración con SpeechRecognition y la comunicación HTTP con el backend.
+ */
+
 import { Component, OnInit, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+/**
+ * Componente raíz de la aplicación.
+ * 
+ * Responsabilidad:
+ * - Gestiona la captura de voz a texto usando SpeechRecognition.
+ * - Permite enviar el texto capturado al backend para cifrado.
+ * - Muestra el texto y el resultado cifrado en la interfaz.
+ * 
+ * Interacción:
+ * - Usa HttpClient para comunicarse con el backend Node.js.
+ * - Utiliza NgZone para actualizar el estado de Angular desde eventos externos.
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  // El texto que va apareciendo en tiempo real
+  /**
+   * Texto capturado en tiempo real desde el reconocimiento de voz.
+   * Solo permite letras, números y espacios, limitado a 15 caracteres.
+   * @type {string}
+   */
   text = '';
-  // Resultado de la encriptación
+
+  /**
+   * Resultado de la encriptación recibido desde el backend.
+   * @type {string}
+   */
   encrypted = '';
 
-  // Referencia al SpeechRecognition y flag de estado
+  /**
+   * Referencia a la instancia de SpeechRecognition.
+   * @type {any}
+   * @private
+   */
   private recognition!: any;
+
+  /**
+   * Indica si el reconocimiento de voz está activo.
+   * @type {boolean}
+   */
   isRecognizing = false;
 
+  /**
+   * Constructor del componente.
+   * 
+   * @param {HttpClient} http - Servicio para realizar peticiones HTTP al backend.
+   * @param {NgZone} ngZone - Permite ejecutar cambios de estado fuera de Angular.
+   */
   constructor(
     private http: HttpClient,
     private ngZone: NgZone
   ) {}
 
+  /**
+   * Inicializa el reconocimiento de voz y configura sus eventos.
+   * 
+   * @returns {void}
+   * @sideeffect Configura SpeechRecognition y actualiza el estado del componente en respuesta a eventos de voz.
+   */
   ngOnInit(): void {
     const SR = (window as any).SpeechRecognition
               || (window as any).webkitSpeechRecognition;
@@ -63,7 +110,12 @@ export class AppComponent implements OnInit {
     };
   }
 
-  /** Toggle start/stop del reconocimiento de voz */
+  /**
+   * Inicia o detiene el reconocimiento de voz según el estado actual.
+   * 
+   * @returns {void}
+   * @sideeffect Activa o desactiva SpeechRecognition y actualiza el estado visual.
+   */
   startListening(): void {
     if (!this.recognition) return;
 
@@ -74,7 +126,12 @@ export class AppComponent implements OnInit {
     }
   }
 
-  /** Envía el texto al backend para encriptar */
+  /**
+   * Envía el texto actual al backend para ser cifrado mediante RSA.
+   * 
+   * @returns {void}
+   * @sideeffect Realiza una petición HTTP POST al backend y actualiza el resultado cifrado.
+   */
   encrypt(): void {
     const url = 'http://localhost:3000/api/encrypt';
     this.http.post<{ encrypted: string }>(url, { text: this.text })
@@ -87,3 +144,9 @@ export class AppComponent implements OnInit {
       });
   }
 }
+
+/** 
+ * Resumen:
+ * Este archivo implementa el componente principal de Angular, encargado de capturar texto por voz,
+ * mostrarlo en pantalla y enviarlo al backend para cifrado RSA, integrando servicios de voz y HTTP.
+ */
