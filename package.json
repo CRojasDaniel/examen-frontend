@@ -1,0 +1,28 @@
+{
+  "name": "examen-angular",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "ng serve --open",
+    "build": "ng build",
+    "start:api": "node api/index.js"
+  },
+  "dependencies": {
+    "@angular/animations": "^14.2.0",
+    "@angular/common": "^14.2.0",
+    "@angular/compiler": "^14.2.0",
+    "@angular/core": "^14.2.0",
+    "@angular/forms": "^14.2.0",
+    "@angular/platform-browser": "^14.2.0",
+    "@angular/platform-browser-dynamic": "^14.2.0",
+    "@angular/platform-server": "^14.2.0",
+    "@nguniversal/express-engine": "^14.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@angular/cli": "^14.2.0",
+    "@angular-devkit/build-angular": "^14.2.0",
+    "typescript": "~4.7.2",
+    "ts-node": "^10.9.1"
+  }
+}
