@@ -1,0 +1,62 @@
+<!-- src/app/app.component.html -->
+<div
+    class="min-vh-100 d-flex flex-column align-items-center justify-content-center bg-dark text-white text-center px-3 bg-black">
+    
+    <!-- Imagen central -->
+    
+    <div
+        class="card col-lg-3 d-flex flex-column align-items-center justify-content-center bg-dark text-white text-center px-3 bg-black">
+        <img src="assets/personas.png" alt="Ilustración de personas" class="mb-4 personas-img">
+
+        <!-- Título y subtítulo -->
+        <h1 class="fw-bold mb-2">¡Te damos la bienvenida a Banco Azteca!</h1>
+        <p class="small mb-4">
+            Usa tu préstamo como dinero en efectivo<br>
+            o compra en donde quieras.
+        </p>
+
+        <!-- Input + contador + spinner -->
+        <div class="w-100 w-sm-75 w-md-50 mb-4 position-relative text-start">
+            <label for="nameInput" class="form-label mb-1 ">¿Cómo prefieres que te llamemos?</label>
+            <input id="nameInput" type="text"
+                class="form-control bg-transparent border-0 border-bottom text-white "
+                [value]="text" disabled placeholder="Escribe tu nombre" maxlength="15">
+            
+            <div class="text-end text-muted mt-1">{{ text.length }}/15 caracteres</div>
+
+            <!-- Spinner mientras escucha -->
+            <div *ngIf="isRecognizing">
+                <div class="spinner-border spinner-border-sm text-light" role="status">
+                    <span class="visually-hidden">Escuchando...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="d-flex gap-3 mb-2">
+            <button type="button" class="btn btn-outline-light btn-lg" (click)="startListening()">
+                🎤
+            </button>
+            
+        </div>
+        <!-- Botones de acción -->
+        <div class="mb-3 w-100">
+            <button type="button" class="btn btn-primary btn-lg w-100" (click)="encrypt()" [disabled]="!text">
+                Comenzar
+            </button>
+            
+        </div>
+        
+        
+    </div>
+    <!-- Footer de encriptado -->
+<footer
+  class="encrypted-footer d-flex justify-content-center align-items-center bg-black"
+>
+  <div class="encrypted-container px-3 py-2">
+    <strong   *ngIf="encrypted"
+>Encrypted:</strong>&nbsp;{{ encrypted }}
+  </div>
+</footer>
+
+</div>

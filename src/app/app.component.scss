@@ -1,0 +1,63 @@
+// Asegúrate de importar Bootstrap en tu styles global o en este punto:
+// @import '~bootstrap/scss/bootstrap';
+
+.personas-img {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+}
+
+// Opcional: Personalizar el botón redondeado
+.btn-primary {
+  border-radius: 50px;
+  background-color: #6c757d; // color gris claro como en el PDF
+  border-color: #6c757d;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+}
+.bg-black{
+  background-color: #000;
+}
+.form-control{
+  border-radius: 0;
+}
+input::placeholder {
+  color: #ccc;
+  opacity: 1; 
+}
+.text-end{
+  color: #fff !important;
+}
+
+/* Footer fijo al fondo */
+.encrypted-footer {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000;     /* fondo negro puro */
+  padding: 0.5rem 0;
+  z-index: 1000;              /* por encima del contenido */
+}
+
+/* Contenedor con max-width + overflow */
+.encrypted-container {
+  max-width: 90%;             /* nunca más ancho que el 90% del viewport */
+  overflow-x: auto;           /* scroll horizontal si es necesario */
+  white-space: nowrap;        /* impedir wrap de palabras */
+  color: #fff;                /* texto en blanco */
+  font-size: 0.9rem;
+}
+
+/* Opcional: estilos al scrollbar */
+.encrypted-container::-webkit-scrollbar {
+  height: 4px;
+}
+.encrypted-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 2px;
+}
+input {
+  padding: 0%;
+}
